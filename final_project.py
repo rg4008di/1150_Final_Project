@@ -6,11 +6,23 @@ import requests
 import docx
 
 url = 'https://taco-1150.herokuapp.com/random/?full_taco=true' # Here i am setting the api in a variable.
+
+pic_url = 'https://api.unsplash.com/photos/random?'
+
+query = 'tacos'
+
+client_id = 'e73fdc2f4eff1bbeb0ec4505b7cc355b6572b434a09f410702383be7536129aa'
+
+query_params = {'client_id': client_id, 'query': query}
+
+response = requests.get(pic_url, params=query_params).json()
+
 foo = ['First', 'Second', 'Third']
+
 document = docx.Document()  # create a new blank document
 
 document.add_paragraph('Random Taco Cookbook', 'Title')
-document.add_picture('tacos_resize.jpg', width=docx.shared.Inches(6), height=docx.shared.Inches(6))
+document.add_picture(response, width=docx.shared.Inches(6), height=docx.shared.Inches(6))
 
 
 
@@ -46,7 +58,3 @@ for i in range(3):
     document.add_page_break()
 
 document.save('recipe.docx')
-
-
-
-
