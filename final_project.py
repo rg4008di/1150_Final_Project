@@ -4,10 +4,12 @@
 # bring in the things
 import requests
 import docx
+from PIL import Image
+from io import BytesIO
 
 url = 'https://taco-1150.herokuapp.com/random/?full_taco=true' # Here i am setting the api in a variable.
 
-pic_url = 'https://api.unsplash.com/photos/random?'
+pic_url = 'https://api.unsplash.com/photos/random/'
 
 query = 'tacos'
 
@@ -17,12 +19,19 @@ query_params = {'client_id': client_id, 'query': query}
 
 response = requests.get(pic_url, params=query_params).json()
 
+full_url = response['urls']['full']
+
+img_data = requests.get(full_url)
+
+img = BytesIO(img_data.content)
+
+
 foo = ['First', 'Second', 'Third']
 
 document = docx.Document()  # create a new blank document
 
 document.add_paragraph('Random Taco Cookbook', 'Title')
-document.add_picture(response, width=docx.shared.Inches(6), height=docx.shared.Inches(6))
+document.add_picture(img, width=docx.shared.Inches(6), height=docx.shared.Inches(6))
 
 
 
