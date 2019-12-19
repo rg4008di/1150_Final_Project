@@ -7,7 +7,7 @@ import docx
 
 url = 'https://taco-1150.herokuapp.com/random/?full_taco=true' # Here i am setting the api in a variable.
 foo = ['First', 'Second', 'Third']
-document = docx.Document()
+document = docx.Document()  # create a new blank document
 
 document.add_paragraph('Random Taco Cookbook', 'Title')
 document.add_picture('tacos_resize.jpg', width=docx.shared.Inches(6), height=docx.shared.Inches(6))
