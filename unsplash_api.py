@@ -13,11 +13,7 @@ query_params = {'client_id': client_id, 'query': query}
 
 response = requests.get(url, params=query_params).json()
 
-full_url = response['urls']['full']
 
-img_data = requests.get(full_url)
-
-img = Image.open(BytesIO(img_data.content))
 
 img.show()
 
