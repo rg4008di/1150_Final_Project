@@ -42,7 +42,7 @@ document.add_page_break() #creating a page break so recipes start on a new page
 
 
 for i in range(3): # using i for a variable in a 'for loop' to hold count and using range to tell the 'for loop' to run 3 times
-    taco_recipe = requests.get(url).json()  # Then creating a variable to request the taco recipe.
+    taco_recipe = requests.get(url).json()  # Then creating a variable to hold the info i get from the recipe API.
     seasoning_name = taco_recipe['seasoning']['name'] # getting the seasoning name from the taco recipe json file
     seasoning = taco_recipe['seasoning']['recipe'] # getting the seasoning Recipe from the taco recipe json file
     condiment_name = taco_recipe['condiment']['name'] # getting the condiment name from the taco recipe json file
